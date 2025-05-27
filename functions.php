@@ -79,7 +79,7 @@ function my_growth_tools_setup() {
 		apply_filters(
 			'my_growth_tools_custom_background_args',
 			array(
-				'default-color' => 'ffffff',
+				'default-color' => 'F9FAFB',
 				'default-image' => '',
 			)
 		)
@@ -114,22 +114,22 @@ function my_growth_tools_setup() {
 		array(
 			'name'  => esc_html__( 'Primary', 'my-growth-tools' ),
 			'slug'  => 'primary',
-			'color' => '#ff3366',
+			'color' => '#2DD4BF',
 		),
 		array(
 			'name'  => esc_html__( 'Secondary', 'my-growth-tools' ),
 			'slug'  => 'secondary',
-			'color' => '#3366ff',
+			'color' => '#3B82F6',
 		),
 		array(
-			'name'  => esc_html__( 'Dark Gray', 'my-growth-tools' ),
-			'slug'  => 'dark-gray',
-			'color' => '#333333',
+			'name'  => esc_html__( 'Text Color', 'my-growth-tools' ),
+			'slug'  => 'text-color',
+			'color' => '#374151',
 		),
 		array(
-			'name'  => esc_html__( 'Light Gray', 'my-growth-tools' ),
-			'slug'  => 'light-gray',
-			'color' => '#f9f9f9',
+			'name'  => esc_html__( 'Background Color', 'my-growth-tools' ),
+			'slug'  => 'background-color',
+			'color' => '#F9FAFB',
 		),
 		array(
 			'name'  => esc_html__( 'White', 'my-growth-tools' ),

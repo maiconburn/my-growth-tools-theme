@@ -36,7 +36,7 @@ function my_growth_tools_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'primary_color',
 		array(
-			'default'           => '#ff3366',
+			'default'           => '#2DD4BF',
 			'sanitize_callback' => 'sanitize_hex_color',
 			'transport'         => 'postMessage',
 		)
@@ -57,7 +57,7 @@ function my_growth_tools_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'secondary_color',
 		array(
-			'default'           => '#3366ff',
+			'default'           => '#3B82F6',
 			'sanitize_callback' => 'sanitize_hex_color',
 			'transport'         => 'postMessage',
 		)
@@ -78,7 +78,7 @@ function my_growth_tools_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'text_color',
 		array(
-			'default'           => '#333333',
+			'default'           => '#374151',
 			'sanitize_callback' => 'sanitize_hex_color',
 			'transport'         => 'postMessage',
 		)
@@ -424,9 +424,9 @@ add_action( 'customize_preview_init', 'my_growth_tools_customize_preview_js' );
  * Generate CSS for the color customization options.
  */
 function my_growth_tools_customizer_css() {
-	$primary_color = get_theme_mod( 'primary_color', '#ff3366' );
-	$secondary_color = get_theme_mod( 'secondary_color', '#3366ff' );
-	$text_color = get_theme_mod( 'text_color', '#333333' );
+	$primary_color = get_theme_mod( 'primary_color', '#2DD4BF' );
+	$secondary_color = get_theme_mod( 'secondary_color', '#3B82F6' );
+	$text_color = get_theme_mod( 'text_color', '#374151' );
 	
 	$css = '
 		:root {

@@ -17,7 +17,7 @@ function my_growth_tools_custom_header_setup() {
 			'my_growth_tools_custom_header_args',
 			array(
 				'default-image'      => '',
-				'default-text-color' => '000000',
+				'default-text-color' => '111827',
 				'width'              => 1200,
 				'height'             => 250,
 				'flex-height'        => true,
