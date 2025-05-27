@@ -273,11 +273,58 @@ function my_growth_tools_scripts() {
 	// Theme script
 	wp_enqueue_script( 'my-growth-tools-theme', get_template_directory_uri() . '/assets/js/theme.js', array('jquery'), MY_GROWTH_TOOLS_VERSION, true );
 
+	// Localize script for AJAX
+	wp_localize_script(
+		'my-growth-tools-theme',
+		'myGrowthToolsTheme',
+		array(
+			'ajax_url' => admin_url( 'admin-ajax.php' ),
+			'nonce'    => wp_create_nonce( 'my_growth_tools_newsletter_nonce' ),
+		)
+	);
+
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'my_growth_tools_scripts' );
+
+/**
+ * AJAX handler for newsletter subscription.
+ */
+function my_growth_tools_newsletter_ajax_handler() {
+	// Verify nonce
+	check_ajax_referer( 'my_growth_tools_newsletter_nonce', 'nonce' );
+
+	// Get email from POST data
+	$email = isset( $_POST['email'] ) ? sanitize_email( $_POST['email'] ) : '';
+
+	// Validate email
+	if ( ! is_email( $email ) ) {
+		wp_send_json_error(
+			array(
+				'message' => esc_html__( 'Invalid email address provided.', 'my-growth-tools' ),
+			)
+		);
+	}
+
+	// At this point, the email is considered valid.
+	// TODO: Add actual email processing logic here (e.g., save to database, send to Mailchimp, etc.)
+
+	// Send success response (stub)
+	wp_send_json_success(
+		array(
+			'message' => esc_html__( 'Thank you for subscribing! (This is a stub response)', 'my-growth-tools' ),
+		)
+	);
+}
+add_action( 'wp_ajax_my_growth_tools_subscribe_newsletter', 'my_growth_tools_newsletter_ajax_handler' );
+add_action( 'wp_ajax_nopriv_my_growth_tools_subscribe_newsletter', 'my_growth_tools_newsletter_ajax_handler' );
+
+
+
+
+
 
 /**
  * Custom template tags for this theme.

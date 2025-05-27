@@ -18,12 +18,45 @@
 		// Handle newsletter form submission
 		$('.newsletter-form').on('submit', function(e) {
 			e.preventDefault();
-			var email = $(this).find('input[type="email"]').val();
+			var $form = $(this);
+			var $emailInput = $form.find('input[type="email"]');
+			var email = $emailInput.val();
+			var $messages = $form.siblings('.newsletter-messages'); // Check for existing messages div
+
+			// If no dedicated messages div, create one after the form
+			if (!$messages.length) {
+				$form.after('<div class="newsletter-messages"></div>');
+				$messages = $form.siblings('.newsletter-messages');
+			}
 			
-			// This is a placeholder for actual newsletter subscription functionality
-			// In a real implementation, this would send the data to a server
-			alert('Thank you for subscribing with: ' + email);
-			$(this).find('input[type="email"]').val('');
+			$messages.text( 'Processing...' ).removeClass('error success'); // i18n: text to be translated if needed
+
+			// Basic client-side validation
+			if ( !email || email.indexOf('@') === -1 ) {
+				$messages.text( 'Invalid email address.' ).addClass('error'); // i18n
+				return;
+			}
+
+			$.ajax({
+				type: 'POST',
+				url: myGrowthToolsTheme.ajax_url,
+				data: {
+					action: 'my_growth_tools_subscribe_newsletter',
+					nonce: myGrowthToolsTheme.nonce,
+					email: email
+				},
+				success: function(response) {
+					if (response.success) {
+						$messages.text(response.data.message).addClass('success');
+						$emailInput.val('');
+					} else {
+						$messages.text(response.data.message || 'An error occurred.').addClass('error'); // i18n
+					}
+				},
+				error: function() {
+					$messages.text('An error occurred. Please try again.').addClass('error'); // i18n
+				}
+			});
 		});
 
 		// Add smooth fade-in effect for page elements

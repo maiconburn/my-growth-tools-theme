@@ -63,14 +63,6 @@ function my_growth_tools_add_menu_parent_class( $items ) {
 add_filter( 'wp_nav_menu_objects', 'my_growth_tools_add_menu_parent_class' );
 
 /**
- * Add meta tag for mobile viewport
- */
-function my_growth_tools_add_mobile_viewport() {
-	echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
-}
-add_action( 'wp_head', 'my_growth_tools_add_mobile_viewport', 1 );
-
-/**
  * Add preconnect for Google Fonts.
  *
  * @param array  $urls           URLs to print for resource hints.
